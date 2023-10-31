@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "943271457577",
+    "project_id": "maxwell-demo-5e236",
+    "storage_bucket": "maxwell-demo-5e236.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943271457577:android:75a195ad80e878f5787d38",
+        "android_client_info": {
+          "package_name": "com.example.maxwell"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkTYPNjp4diE5yI7rcxLsV2JeYGpObek8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
