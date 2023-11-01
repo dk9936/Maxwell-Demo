@@ -24,10 +24,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAppDistribution = Firebase.appDistribution
-        binding.updatebutton.setOnClickListener { view ->
+        binding.updatebutton.setOnClickListener { _ ->
             checkForUpdate()
         }
-        binding.signinButton.setOnClickListener { view ->
+        binding.signinButton.setOnClickListener { _ ->
             signIn()
         }
     }
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             .addOnProgressListener { updateProgress ->
                 // (Optional) Implement custom progress updates in addition to
                 // automatic NotificationManager updates.
-                Log.d(TAG, "checkForUpdate: "+updateProgress)
+                Log.d(TAG, "checkForUpdate: $updateProgress")
             }
             .addOnFailureListener { e ->
                 if (e is FirebaseAppDistributionException) {
