@@ -20,6 +20,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            firebaseAppDistribution{
+                serviceCredentialsFile = "Desktop/firebasekey.json"
+                releaseNotesFile="Desktop/releasenote.txt"
+                testers="dineshkumarcse0060@gmail.com, dkcse0060@gmail.com"
+            }
+        }
         release {
             firebaseAppDistribution{
                 serviceCredentialsFile = "Desktop/firebasekey.json"
