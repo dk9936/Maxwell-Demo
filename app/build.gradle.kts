@@ -47,6 +47,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    lint {
+        warning += "InvalidPackage"
+    }
 }
 
 dependencies {
