@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Maxwell</string>
+    <string name="sign_in">Sign In</string>
+    <string name="version_67777">version 67777</string>
+    <string name="update">update</string>
+    <string name="sd">sd</string>
 </resources>
