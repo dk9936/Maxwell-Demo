@@ -23,14 +23,14 @@ android {
         debug {
             firebaseAppDistribution{
                 serviceCredentialsFile = "D:/fk.json"
-                releaseNotesFile="Desktop/releasenote.txt"
+                releaseNotesFile="D:/releasenote.txt"
                 testers="dineshkumarcse0060@gmail.com, dkcse0060@gmail.com"
             }
         }
         release {
             firebaseAppDistribution{
                 serviceCredentialsFile = "D:/fk.json"
-                releaseNotesFile="Desktop/releasenote.txt"
+                releaseNotesFile="D:/releasenote.txt"
                 testers="dineshkumarcse0060@gmail.com, dkcse0060@gmail.com"
             }
             isMinifyEnabled = false
