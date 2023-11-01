@@ -3,49 +3,81 @@ package com.example.maxwell
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import com.example.maxwell.databinding.ActivityMainBinding
 import com.google.firebase.appdistribution.FirebaseAppDistribution
 import com.google.firebase.appdistribution.FirebaseAppDistributionException
+import com.google.firebase.appdistribution.ktx.appDistribution
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     companion object{
-        private const val TAG = "MainActivity"
+        private const val TAG = "FirebaseAppDistribution"
     }
+
+    private lateinit var firebaseAppDistribution: FirebaseAppDistribution
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        Log.d(TAG, "onCreate: Testing appliacation v2")
-
+        firebaseAppDistribution = Firebase.appDistribution
+        binding.updatebutton.setOnClickListener { view ->
+            checkForUpdate()
+        }
+        binding.signinButton.setOnClickListener { view ->
+            signIn()
+        }
     }
+
+
 
     override fun onResume() {
         super.onResume()
+        configureUpdateButton()
+        configureSigninButton()
+    }
 
-        // Copy and paste this into any part of your app - for example, in your main
-// activity's onResume method.
-        val firebaseAppDistribution = FirebaseAppDistribution.getInstance()
+    private fun checkForUpdate() {
         firebaseAppDistribution.updateIfNewReleaseAvailable()
             .addOnProgressListener { updateProgress ->
                 // (Optional) Implement custom progress updates in addition to
                 // automatic NotificationManager updates.
-                Log.d(TAG, "onResume: $updateProgress")
+                Log.d(TAG, "checkForUpdate: "+updateProgress)
             }
             .addOnFailureListener { e ->
-                // (Optional) Handle errors.
                 if (e is FirebaseAppDistributionException) {
-                    when (e.errorCode) {
-                        FirebaseAppDistributionException.Status.NOT_IMPLEMENTED -> {
-                            // SDK did nothing. This is expected when building for Play.
-                            Log.d(TAG, "onResume: nothing")
-                        }
-                        else -> {
-                            // Handle other errors.
-                            Log.d(TAG, "onResume: other errors")
-                        }
-                    }
+                    // Handle exception.
+                    Log.d(TAG, "checkForUpdate: "+e.message)
                 }
             }
     }
+
+    private fun signIn() {
+        if (isTesterSignedIn()) {
+            firebaseAppDistribution.signOutTester()
+            configureUpdateButton()
+            configureSigninButton()
+        } else {
+            firebaseAppDistribution.signInTester()
+        }
+    }
+
+    private fun isTesterSignedIn() : Boolean {
+        return firebaseAppDistribution.isTesterSignedIn
+    }
+
+    private fun configureUpdateButton() {
+        binding.updatebutton.visibility = if (isTesterSignedIn()) View.VISIBLE else View.GONE
+    }
+
+    private fun configureSigninButton() {
+        binding.signinButton.text = if (isTesterSignedIn()) "Sign Out" else "Sign In"
+        binding.signinButton.visibility = View.VISIBLE
+    }
+
+
 
 }
