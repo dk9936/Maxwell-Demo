@@ -17,12 +17,6 @@ jobs:
       with:
        java-version: 17
        distribution: 'adopt'
-       
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'  # Use the Node.js version you need
-
     - name: Print Node.js Version
       run: |
         node -v
