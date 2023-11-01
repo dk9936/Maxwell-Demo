@@ -21,6 +21,11 @@ android {
 
     buildTypes {
         release {
+            firebaseAppDistribution{
+                serviceCredentialsFile = "Desktop/firebasekey.json"
+                releaseNotesFile="Desktop/releasenote.txt"
+                testers="dineshkumarcse0060@gmail.com, dkcse0060@gmail.com"
+            }
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
