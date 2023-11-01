@@ -24,7 +24,6 @@ jobs:
       with:
         node-version: '16'  # You can use '16' or '18' based on your requirements
 
-
     - name: Restore Cache
       uses: actions/cache@v2
       with:
@@ -48,4 +47,4 @@ jobs:
         groups: qa
         file: app/build/outputs/apk/debug/app-debug.apk
       env:
-       NODE_VERSION: 16
+        NODE_VERSION: 16  # Explicitly set Node.js version for Firebase CLI
