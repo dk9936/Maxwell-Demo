@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var firebaseAppDistribution: FirebaseAppDistribution
     private lateinit var binding: ActivityMainBinding
-    private lateinit var progressBarDialog: ProgressBarDialog
+   // private lateinit var progressBarDialog: ProgressBarDialog
 
     private val requestPermissionLauncher: ActivityResultLauncher<String> =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        progressBarDialog = ProgressBarDialog()
+       // progressBarDialog = ProgressBarDialog()
         
         requestNotificationPermission()
         firebaseAppDistribution = Firebase.appDistribution
@@ -74,14 +74,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkForUpdate() {
-        progressBarDialog.show(supportFragmentManager,TAG)
+       // progressBarDialog.show(supportFragmentManager,TAG)
         firebaseAppDistribution.updateIfNewReleaseAvailable()
             .addOnProgressListener { updateProgress ->
                 // (Optional) Implement custom progress updates in addition to
                 // automatic NotificationManager updates.
                 Log.d(TAG, "checkForUpdate: $updateProgress")
                 if (updateProgress.apkFileTotalBytes == updateProgress.apkBytesDownloaded){
-                    progressBarDialog.dismiss()
+               //     progressBarDialog.dismiss()
                     Log.d(TAG, "checkForUpdate: downloaded completer")
                 }
                 
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 if (e is FirebaseAppDistributionException) {
                     // Handle exception.
                     Log.d(TAG, "checkForUpdate: " + e.message)
-                    progressBarDialog.dismiss()
+                 //   progressBarDialog.dismiss()
                 }
             }
     }
