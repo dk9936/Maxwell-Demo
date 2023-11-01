@@ -22,7 +22,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'  # You can use '16' or '18' based on your requirements
+        node-version: '16'  # You can use '16' or '18' based on your requirements
 
 
     - name: Restore Cache
